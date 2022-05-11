@@ -18,24 +18,25 @@ def register(request):
         print(uname, pword)
         if form.is_valid():
             form.save()
-        return HttpResponse(f'{uname}! You have been registered successfully.')
+        html = f"{uname}! You have been registered successfully. Go to <a href='/'>Home</a> now."
+        return HttpResponse(html)
     else: 
         form = UserCreationForm()
 
     context = {'form': form}
-    return render(request, 'register/register.html', context)
+    return render(request, 'registration/register.html', context)
 
-def login_user(request):
-    if request.method == 'POST':
-        uname = request.POST['username']
-        user = User.objects.get(username=uname)
-        # user = authenticate(username = user.username, password=user.password)
-        login(request, user)
-        return redirect('home')
+# def login_user(request):
+#     if request.method == 'POST':
+#         uname = request.POST['username']
+#         user = User.objects.get(username=uname)
+#         # user = authenticate(username = user.username, password=user.password)
+#         login(request, user)
+#         return redirect('home')
     
-    return render(request, 'register/login.html')
+#     return render(request, 'register/login.html')
 
-def logout_user(request):
-    user = request.user
-    logout(request)
-    return HttpResponse(f'{user} has been logout!')
+# def logout_user(request):
+#     user = request.user
+#     logout(request)
+#     return HttpResponse(f'{user} has been logout!')
