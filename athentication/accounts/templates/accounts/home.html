@@ -1,9 +1,0 @@
-{% extends 'registration/base.html' %}
-
-{% block content %}
-{% if user.is_authenticated %}
-<p>Hi {{user.username}}! Welcome to MYSITE.</p>
-{% else %}
-<p>Hi Guest! Welcome to MYSITE.</p>
-{% endif %}
-{% endblock %}
