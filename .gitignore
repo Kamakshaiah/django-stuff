@@ -1,2 +1,3 @@
 django-authenticate-full/authentication/authentication/settings.py
 dynamic-menus/dynamicmenus/dynamicmenus/settings.py
+django-crud/manytomany-demo/crud/settings.py
