@@ -1,0 +1,55 @@
+{% extends 'userregistration/base.html' %}
+
+{% block content %}
+
+
+<div class="col-sm-10">
+    <div class="m-5 card container">
+        <p>Authentication page!</p>
+        <hr>
+        <!-- {% for user in users %}
+        {{user }}
+        {% endfor %} -->
+        <table class="table table-hover">
+            <thead>
+                <th>Name</th>
+                <th>Password</th>
+                <th>DoB</th>
+                <th></th>
+                
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{user.name}}</td>
+                    <td>{{user.password}}</td>
+                    <td>{{user.date_of_birth}}</td>
+                    <td>
+                        {% if not user.is_authenticated %}
+                        <form class = "d-inline" action="{% url 'approve' user.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="submit" value="Approve">
+                        </form>
+                        {% else %}
+                        <p class = "d-inline">approved</p>
+                        {% endif %}
+
+                        <a class="d-inline" href="{% url 'update' user.id %}">update</a> 
+                        <form class = "d-inline" action="{% url 'delete' user.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="submit" value="Delete">
+                        </form>
+                        
+                    </td>
+                        
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</div>
+
+{% endblock %}
